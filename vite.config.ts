@@ -9,6 +9,9 @@ export default defineConfig({
     sourcemap: false,
     rollupOptions: {
       output: {
+        entryFileNames: 'assets/[name].js',
+        chunkFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/[name][extname]',
         manualChunks(id) {
           if (id.includes('node_modules/three')) return 'three';
           if (id.includes('node_modules/@react-three')) return 'r3f';
