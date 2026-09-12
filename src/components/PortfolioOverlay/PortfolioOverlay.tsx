@@ -1,14 +1,17 @@
 import { FiArrowUp } from 'react-icons/fi';
-import { siteConfig } from '../../data/siteConfig';
+import { type Locale, type SiteContent } from '../../data/content';
 import { type ScrollSnapshot } from '../../hooks/useScrollProgress';
 import { ContactSection } from '../ContactSection/ContactSection';
 import { ProjectSection } from '../ProjectSection/ProjectSection';
 
 type PortfolioOverlayProps = {
+  content: SiteContent;
+  locale: Locale;
+  setLocale: (locale: Locale) => void;
   snapshot: ScrollSnapshot;
 };
 
-export function PortfolioOverlay({ snapshot }: PortfolioOverlayProps) {
+export function PortfolioOverlay({ content, locale, setLocale, snapshot }: PortfolioOverlayProps) {
   const showGoTop = snapshot.progress > 0.9;
 
   const scrollToTop = () => {
@@ -18,33 +21,47 @@ export function PortfolioOverlay({ snapshot }: PortfolioOverlayProps) {
   return (
     <main className="overlay">
       <header className="siteChrome" aria-label="Site header">
-        <a href={`mailto:${siteConfig.person.email}`} className="brandMark" aria-label="Send email to Ahmet Said Korucuk">
+        <a href={`mailto:${content.person.email}`} className="brandMark" aria-label={content.ui.brandEmailAria}>
           ASK
         </a>
-        <span>{Math.round(snapshot.progress * 100).toString().padStart(2, '0')}%</span>
+        <div className="languageSwitch" aria-label={content.ui.languageAria}>
+          {(['en', 'tr'] as const).map((item, index) => (
+            <span className="languageSwitchItem" key={item}>
+              {index > 0 && <span className="languageDivider" aria-hidden="true">|</span>}
+              <button
+                type="button"
+                className={item === locale ? 'isActive' : ''}
+                aria-pressed={item === locale}
+                onClick={() => setLocale(item)}
+              >
+                {content.ui.languageOptions[item]}
+              </button>
+            </span>
+          ))}
+        </div>
       </header>
 
       <section id="intro" className="storySection heroStory" aria-labelledby="hero-title">
         <div className="heroCopy">
-          <h1 id="hero-title">{siteConfig.person.name}</h1>
-          <p className="heroRole">{siteConfig.person.title}</p>
-          <p className="heroTagline">{siteConfig.person.tagline}</p>
+          <h1 id="hero-title">{content.person.name}</h1>
+          <p className="heroRole">{content.person.title}</p>
+          <p className="heroTagline">{content.person.tagline}</p>
         </div>
-        <div className="scrollCue" aria-label="Sinir ağını görmek için aşağı kaydır">
+        <div className="scrollCue" aria-label={content.ui.scrollCueAria}>
           <span className="scrollCueIcon" aria-hidden="true">
             <span className="scrollCueTrack" />
             <span className="scrollCueArrow" />
           </span>
-          <span className="srOnly">Aşağı kaydır</span>
+          <span className="srOnly">{content.ui.scrollDown}</span>
         </div>
       </section>
 
       <section className="storySection aboutStory" aria-labelledby="about-title">
         <div className="copyBlock">
-          <h2 id="about-title">Frontend ownership, AI product development ve production disiplini.</h2>
-          <p>{siteConfig.person.bio}</p>
-          <ul className="profileHighlights" aria-label="Profile highlights">
-            {siteConfig.highlights.map((highlight) => (
+          <h2 id="about-title">{content.sections.about.title}</h2>
+          <p>{content.person.bio}</p>
+          <ul className="profileHighlights" aria-label={content.ui.profileHighlightsAria}>
+            {content.highlights.map((highlight) => (
               <li key={highlight}>{highlight}</li>
             ))}
           </ul>
@@ -53,13 +70,11 @@ export function PortfolioOverlay({ snapshot }: PortfolioOverlayProps) {
 
       <section className="storySection skillsStory" aria-labelledby="skills-title">
         <div className="copyBlock compact">
-          <h2 id="skills-title">Ölçeklenebilir arayüz mimarisi, ölçülebilir ürün etkisi.</h2>
-          <p>
-            React, TypeScript, Redux Toolkit, Zustand ve TanStack Query ile karmaşık ürün akışlarını component yapısına, state modeline ve sürdürülebilir data-flow düzenine ayırıyorum.
-          </p>
+          <h2 id="skills-title">{content.sections.skills.title}</h2>
+          <p>{content.sections.skills.description}</p>
         </div>
-        <div className="skillCloud" role="list" aria-label="Skills">
-          {[siteConfig.skills.filter((_, index) => index % 2 === 0), siteConfig.skills.filter((_, index) => index % 2 !== 0)].map(
+        <div className="skillCloud" role="list" aria-label={content.ui.skillsAria}>
+          {[content.skills.filter((_, index) => index % 2 === 0), content.skills.filter((_, index) => index % 2 !== 0)].map(
             (trackSkills, trackIndex) => (
               <ul className={`skillTrack ${trackIndex === 1 ? 'skillTrackReverse' : ''}`} key={trackIndex}>
                 {[...trackSkills, ...trackSkills].map((skill, index) => (
@@ -79,18 +94,16 @@ export function PortfolioOverlay({ snapshot }: PortfolioOverlayProps) {
 
       <section className="storySection systemStory" aria-labelledby="system-title">
         <div className="copyBlock">
-          <h2 id="system-title">Ürün akışını uçtan uca sahiplenen frontend yaklaşımı.</h2>
-          <p>
-            Report Builder, Digest Builder, Boards ve Conversations boyunca feature delivery, kritik hata çözümü, CRUD workflow, drag-and-drop, WebSocket ve AI destekli özellikleri aynı ürün mantığı içinde taşıdım.
-          </p>
+          <h2 id="system-title">{content.sections.system.title}</h2>
+          <p>{content.sections.system.description}</p>
         </div>
       </section>
 
       <section className="storySection chronologyStory" aria-labelledby="chronology-title">
         <div className="copyBlock chronologyBlock">
-          <h2 id="chronology-title">Mühendislik çizgim ürün sorumluluğuyla derinleşti.</h2>
-          <ol className="timelineList" aria-label="Career timeline">
-            {siteConfig.timeline.map((item) => (
+          <h2 id="chronology-title">{content.sections.chronology.title}</h2>
+          <ol className="timelineList" aria-label={content.ui.careerTimelineAria}>
+            {content.timeline.map((item) => (
               <li key={item.period}>
                 <span>{item.period}</span>
                 <div>
@@ -105,26 +118,25 @@ export function PortfolioOverlay({ snapshot }: PortfolioOverlayProps) {
 
       <section className="storySection mindStory" aria-labelledby="mind-title">
         <div className="copyBlock centered">
-          <h2 id="mind-title">Gerçek zamanlı frontend sistemlerini AI katmanıyla birleştiriyorum.</h2>
-          <p>
-            Agent tabanlı AI sistemlerini frontend uygulamalarına prompt suggestion, summarization, fallback mekanizmaları ve güvenilir realtime communication prensipleriyle bağlıyorum.
-          </p>
+          <h2 id="mind-title">{content.sections.mind.title}</h2>
+          <p>{content.sections.mind.description}</p>
         </div>
       </section>
 
-      {siteConfig.projects.map((project, index) => (
+      {content.projects.map((project, index) => (
         <ProjectSection
           key={project.id}
+          content={content}
           project={project}
           index={index}
           active={snapshot.activeProject === index}
         />
       ))}
 
-      <ContactSection />
+      <ContactSection content={content} />
 
       {showGoTop && (
-        <button className="goTopButton" type="button" aria-label="Sayfanın başına dön" onClick={scrollToTop}>
+        <button className="goTopButton" type="button" aria-label={content.ui.goTopAria} onClick={scrollToTop}>
           <FiArrowUp aria-hidden="true" />
         </button>
       )}

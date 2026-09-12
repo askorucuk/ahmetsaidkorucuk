@@ -256,6 +256,63 @@ button:focus-visible {
   text-transform: uppercase;
 }
 
+.languageSwitch {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.48rem;
+  min-height: 2.4rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid rgba(188, 235, 255, 0.16);
+  border-radius: 999px;
+  background:
+    linear-gradient(135deg, rgba(99, 237, 255, 0.08), rgba(154, 108, 255, 0.06)),
+    rgba(4, 11, 20, 0.46);
+  box-shadow:
+    0 0.8rem 1.8rem rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+}
+
+.languageSwitchItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.48rem;
+}
+
+.languageSwitch button {
+  padding: 0;
+  border: 0;
+  color: rgba(244, 248, 255, 0.48);
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
+  transition:
+    color 220ms ease,
+    text-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.languageSwitch button:hover,
+.languageSwitch button.isActive {
+  color: rgba(244, 252, 255, 0.96);
+  text-shadow: 0 0 0.8rem rgba(99, 237, 255, 0.5);
+}
+
+.languageSwitch button:hover {
+  transform: translateY(-0.08rem);
+}
+
+.languageDivider {
+  color: rgba(99, 237, 255, 0.35);
+  font-size: 0.72rem;
+  line-height: 1;
+}
+
 .brandMark {
   pointer-events: auto;
   position: relative;

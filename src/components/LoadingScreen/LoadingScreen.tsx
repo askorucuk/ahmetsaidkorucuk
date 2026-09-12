@@ -1,7 +1,11 @@
-export function LoadingScreen() {
+type LoadingScreenProps = {
+  label: string;
+};
+
+export function LoadingScreen({ label }: LoadingScreenProps) {
   return (
     <div className="loadingScreen" role="status" aria-live="polite">
-      <svg className="loadingRing" viewBox="0 0 160 160" role="img" aria-label="Site yükleniyor">
+      <svg className="loadingRing" viewBox="0 0 160 160" role="img" aria-label={label}>
         <defs>
           <filter id="loading-water-blur" x="-30%" y="-30%" width="160%" height="160%">
             <feGaussianBlur stdDeviation="1.4" />
@@ -53,7 +57,7 @@ export function LoadingScreen() {
           <circle className="loadingRingDrop loadingRingDotB" cx="86" cy="133" r="1.9" />
         </g>
       </svg>
-      <span className="srOnly">Site yükleniyor</span>
+      <span className="srOnly">{label}</span>
     </div>
   );
 }

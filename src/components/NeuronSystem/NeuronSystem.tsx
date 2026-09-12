@@ -2,9 +2,9 @@ import { ThreeEvent, useFrame } from '@react-three/fiber';
 import { useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { type SceneState } from '../ScrollExperience/sceneState';
+import { type Project } from '../../data/content';
 import { type DeviceQuality } from '../../hooks/useDeviceQuality';
 import { type NeuronModel } from '../../data/neuralField';
-import { siteConfig } from '../../data/siteConfig';
 import { AxonPath } from './AxonPath';
 import { AxonTerminal } from './AxonTerminal';
 import { DendriteBranch } from './DendriteBranch';
@@ -19,9 +19,10 @@ type NeuronSystemProps = {
   quality: DeviceQuality;
   pointer: React.MutableRefObject<{ x: number; y: number }>;
   reducedMotion: boolean;
+  projects: readonly Project[];
 };
 
-export function NeuronSystem({ sceneState, quality, pointer, reducedMotion }: NeuronSystemProps) {
+export function NeuronSystem({ sceneState, quality, pointer, reducedMotion, projects }: NeuronSystemProps) {
   const group = useRef<THREE.Group>(null);
   const network = useMemo(
     () => NeuronFactory.createNetwork(quality.neuronCount, quality.connectionCount),
@@ -53,6 +54,7 @@ export function NeuronSystem({ sceneState, quality, pointer, reducedMotion }: Ne
           sceneState={sceneState}
           quality={quality}
           reducedMotion={reducedMotion}
+          projects={projects}
         />
       ))}
       {network.synapses.map((synapse) => (
@@ -79,12 +81,13 @@ type AnatomicalNeuronProps = {
   sceneState: React.MutableRefObject<SceneState>;
   quality: DeviceQuality;
   reducedMotion: boolean;
+  projects: readonly Project[];
 };
 
-function AnatomicalNeuron({ neuron, sceneState, quality, reducedMotion }: AnatomicalNeuronProps) {
+function AnatomicalNeuron({ neuron, sceneState, quality, reducedMotion, projects }: AnatomicalNeuronProps) {
   const root = useRef<THREE.Group>(null);
   const [hovered, setHovered] = useState(false);
-  const label = neuron.projectIndex >= 0 ? siteConfig.projects[neuron.projectIndex]?.name : undefined;
+  const label = neuron.projectIndex >= 0 ? projects[neuron.projectIndex]?.name : undefined;
 
   useFrame(({ clock }) => {
     if (!root.current) return;
@@ -108,7 +111,7 @@ function AnatomicalNeuron({ neuron, sceneState, quality, reducedMotion }: Anatom
   const onClick = (event: ThreeEvent<MouseEvent>) => {
     if (neuron.projectIndex < 0) return;
     event.stopPropagation();
-    document.getElementById(`project-${siteConfig.projects[neuron.projectIndex]?.id}`)?.scrollIntoView({
+    document.getElementById(`project-${projects[neuron.projectIndex]?.id}`)?.scrollIntoView({
       behavior: reducedMotion ? 'auto' : 'smooth',
       block: 'center'
     });

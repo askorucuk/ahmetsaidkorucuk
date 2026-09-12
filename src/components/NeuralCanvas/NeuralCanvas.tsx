@@ -7,6 +7,7 @@ import { NeuralConnections } from '../NeuralConnections/NeuralConnections';
 import { NeuralSignalField } from '../NeuralSignalField/NeuralSignalField';
 import { SceneLighting } from '../SceneLighting/SceneLighting';
 import { LoadingScreen } from '../LoadingScreen/LoadingScreen';
+import { type Project } from '../../data/content';
 import { type DeviceQuality } from '../../hooks/useDeviceQuality';
 import { siteConfig } from '../../data/siteConfig';
 
@@ -14,6 +15,8 @@ type NeuralCanvasProps = {
   sceneState: React.MutableRefObject<SceneState>;
   quality: DeviceQuality;
   reducedMotion: boolean;
+  loadingLabel: string;
+  projects: readonly Project[];
 };
 
 function canUseWebGL() {
@@ -25,7 +28,7 @@ function canUseWebGL() {
   }
 }
 
-export function NeuralCanvas({ sceneState, quality, reducedMotion }: NeuralCanvasProps) {
+export function NeuralCanvas({ sceneState, quality, reducedMotion, loadingLabel, projects }: NeuralCanvasProps) {
   const [ready, setReady] = useState(false);
   const [loadingComplete, setLoadingComplete] = useState(false);
   const [webgl, setWebgl] = useState(true);
@@ -87,13 +90,14 @@ export function NeuralCanvas({ sceneState, quality, reducedMotion }: NeuralCanva
               quality={quality}
               pointer={pointer}
               reducedMotion={reducedMotion}
+              projects={projects}
             />
             <NeuralConnections sceneState={sceneState} quality={quality} reducedMotion={reducedMotion} />
             <Preload all />
           </Suspense>
         </Canvas>
       </div>
-      {(!ready || !loadingComplete) && <LoadingScreen />}
+      {(!ready || !loadingComplete) && <LoadingScreen label={loadingLabel} />}
     </>
   );
 }

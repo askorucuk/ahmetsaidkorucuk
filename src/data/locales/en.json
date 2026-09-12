@@ -1,0 +1,183 @@
+{
+  "meta": {
+    "title": "Ahmet Said Korucuk | Get Contact",
+    "description": "A cinematic, interactive neural portfolio experience for Ahmet Said Korucuk."
+  },
+  "person": {
+    "name": "Ahmet Said Korucuk",
+    "title": "Frontend Developer / AI Product Developer",
+    "tagline": "I build scalable frontend architectures, real-time flows, and AI-powered product experiences.",
+    "bio": "I am a Frontend Developer focused on AI Development, with strong full-stack ownership across production-scale products. My work covers frontend architecture, state management, real-time communication, and AI-integrated features in React-based product environments.",
+    "email": "contact@korucuk.com"
+  },
+  "ui": {
+    "brandEmailAria": "Send email to Ahmet Said Korucuk",
+    "scrollCueAria": "Scroll down to explore the neural network",
+    "scrollDown": "Scroll down",
+    "profileHighlightsAria": "Profile highlights",
+    "skillsAria": "Skills",
+    "careerTimelineAria": "Career timeline",
+    "goTopAria": "Back to top",
+    "loadingLabel": "Loading site",
+    "projectDetailsSuffix": "engineering details",
+    "roleLabel": "Role",
+    "technologiesLabel": "Technologies",
+    "yearLabel": "Year",
+    "viewProject": "View project",
+    "contactLinksAria": "Contact links",
+    "socialLinkSuffix": "link",
+    "languageAria": "Language selection",
+    "languageOptions": {
+      "en": "EN",
+      "tr": "TR"
+    }
+  },
+  "sections": {
+    "about": {
+      "title": "Frontend ownership, AI product development, and production discipline."
+    },
+    "skills": {
+      "title": "Scalable interface architecture, measurable product impact.",
+      "description": "I decompose complex product flows into component systems, state models, and sustainable data-flow structures with React, TypeScript, Redux Toolkit, Zustand, and TanStack Query."
+    },
+    "system": {
+      "title": "A frontend approach that owns the product flow end to end.",
+      "description": "Across Report Builder, Digest Builder, Boards, and Conversations, I carried feature delivery, critical issue fixing, CRUD workflows, drag-and-drop, WebSocket flows, and AI-powered features inside one product logic."
+    },
+    "chronology": {
+      "title": "My engineering path deepened through product ownership."
+    },
+    "mind": {
+      "title": "I connect real-time frontend systems with an AI layer.",
+      "description": "I integrate agent-based AI systems into frontend applications through prompt suggestions, summarization, fallback mechanisms, and reliable real-time communication principles."
+    },
+    "contact": {
+      "title": "New connections create new ideas.",
+      "description": "Let's build together."
+    }
+  },
+  "highlights": [
+    "Frontend ownership and architecture responsibility in React-based production products",
+    "Maintainable state and data-flow structures with Redux Toolkit, Zustand, and TanStack Query",
+    "Reliable real-time product experiences through WebSocket, long polling, and fallback strategies",
+    "Prompt suggestion, summarization, and AI feature integration with agent-based AI systems"
+  ],
+  "timeline": [
+    {
+      "period": "2017-2022",
+      "title": "Computer engineering foundation",
+      "description": "During my Computer Engineering education at Ege University, I turned algorithmic thinking, system design, and product development discipline into a strong engineering reflex."
+    },
+    {
+      "period": "2024",
+      "title": "From React interfaces to product responsibility",
+      "description": "On Jotform Report Builder, I worked on complex React UI, Redux Toolkit, drag-and-drop, and SCSS architectures while delivering production-scale features and critical fixes."
+    },
+    {
+      "period": "2025",
+      "title": "End-to-end frontend ownership",
+      "description": "Across Digest Builder and Boards, I managed reusable component structures, CRUD workflows, client-server communication, and performance-sensitive drag-and-drop experiences through the product lifecycle."
+    },
+    {
+      "period": "2026",
+      "title": "AI-powered product development",
+      "description": "On Jotform Conversations, I built reliable AI product experiences with agent-based AI systems, WebSocket communication, Gmail integration testing, and resilient fallback mechanisms."
+    }
+  ],
+  "skills": [
+    "Frontend Development",
+    "AI Development",
+    "Frontend Architecture",
+    "React",
+    "TypeScript",
+    "Redux Toolkit",
+    "Zustand",
+    "TanStack Query",
+    "State Management",
+    "Drag and Drop",
+    "SCSS",
+    "WebSocket",
+    "Long Polling",
+    "AI Integration",
+    "Email HTML/CSS",
+    "Prompt Engineering",
+    "Full-Stack Ownership"
+  ],
+  "projects": [
+    {
+      "id": "report-builder",
+      "name": "Jotform Report Builder",
+      "description": "A product experience built around complex React-based reporting interfaces, feature development, critical issue fixing, and maintainable frontend architecture.",
+      "details": [
+        "Built maintainable state structures and complex UI flows with Redux Toolkit.",
+        "Strengthened drag-and-drop interactions, SCSS architecture, and user-centered development practices.",
+        "Balanced production-scale bug fixing, feature delivery, and code quality."
+      ],
+      "role": "Frontend development, feature implementation, critical issue fixing",
+      "technologies": ["React", "Redux Toolkit", "SCSS", "Drag and Drop", "Frontend Architecture"],
+      "year": "2024",
+      "href": "https://www.jotform.com/products/report-builder/"
+    },
+    {
+      "id": "jotform-boards",
+      "name": "Jotform Boards",
+      "description": "Frontend lifecycle ownership for a Kanban-style collaboration product with scalable CRUD workflows and performance-sensitive drag-and-drop experiences.",
+      "details": [
+        "Structured modern frontend architecture and client-server communication with React, Zustand, and TanStack Query.",
+        "Managed task flows sourced from form submissions, AI Agent conversations, orders, e-signatures, and workflows.",
+        "Owned frontend development through the product lifecycle while balancing maintainability and performance."
+      ],
+      "role": "Frontend ownership, frontend architecture, product lifecycle contribution",
+      "technologies": ["React", "Zustand", "TanStack Query", "SCSS", "PHP", "WebSocket", "Jest", "Cucumber"],
+      "year": "2025",
+      "href": "https://www.jotform.com/products/boards/task-management-software/"
+    },
+    {
+      "id": "digest-builder",
+      "name": "Jotform Digest Builder",
+      "description": "A digest email builder owned from the ground up, turning daily, weekly, or monthly form summaries into charts and detailed email breakdowns.",
+      "details": [
+        "Established reusable component structures and application state through end-to-end frontend ownership.",
+        "Handled email-oriented rendering constraints, responsive email behavior, and cross-client compatibility.",
+        "Built a product-ready frontend foundation balancing delivery speed and long-term maintainability."
+      ],
+      "role": "End-to-end frontend ownership, product evolution, email rendering architecture",
+      "technologies": ["React", "SCSS", "Email HTML/CSS", "Responsive Email", "Cross-Client Testing"],
+      "year": "2025",
+      "href": "https://www.jotform.com/help/how-to-set-up-digest-emails/"
+    },
+    {
+      "id": "jotform-conversations",
+      "name": "Jotform Conversations",
+      "description": "AI-powered product development around prompt suggestions, summarization, and real-time conversation experiences connected to agent-based AI systems.",
+      "details": [
+        "Connected frontend applications with agent-based AI systems for prompt-based suggestion and summarization flows.",
+        "Targeted reliable real-time AI experiences with WebSocket communication, long polling, and fallback mechanisms.",
+        "Improved AI product quality through Gmail integration testing and multi-channel conversation scenarios."
+      ],
+      "role": "AI-integrated frontend development, realtime communication, product reliability",
+      "technologies": ["React", "WebSocket", "Long Polling", "AI Agents", "Prompt Engineering", "Gmail Integration Testing"],
+      "year": "2026",
+      "href": "https://www.linkedin.com/in/ahmetsaidkorucuk"
+    },
+    {
+      "id": "medical-cms",
+      "name": "Medical Website & CMS",
+      "description": "A full-stack product for a general surgeon, focused on patient trust, accessibility, blog management, and a custom admin panel.",
+      "details": [
+        "Designed the public website, blog management, and admin experience together with Next.js, Firebase, and NoSQL.",
+        "Handled SEO, performance, accessibility, and content management needs inside one product flow.",
+        "Managed UI/UX, frontend, backend, and deployment end to end through solo ownership."
+      ],
+      "role": "Solo full-stack ownership, frontend, backend, deployment",
+      "technologies": ["Next.js", "React", "Node.js", "Firebase", "NoSQL", "UI/UX Design"],
+      "year": "2026",
+      "href": "https://ebubekir.korucuk.com"
+    }
+  ],
+  "socials": [
+    { "label": "Email", "href": "mailto:contact@korucuk.com" },
+    { "label": "LinkedIn", "href": "https://www.linkedin.com/in/ahmetsaidkorucuk" },
+    { "label": "GitHub", "href": "https://github.com/askorucuk" }
+  ]
+}

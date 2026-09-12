@@ -5,9 +5,9 @@ import { Suspense, lazy, useEffect, useLayoutEffect, useMemo, useRef } from 'rea
 import { PortfolioOverlay } from '../PortfolioOverlay/PortfolioOverlay';
 import { createSceneState } from './sceneState';
 import { useDeviceQuality } from '../../hooks/useDeviceQuality';
+import { useLocale } from '../../hooks/useLocale';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { useScrollProgress } from '../../hooks/useScrollProgress';
-import { siteConfig } from '../../data/siteConfig';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,7 +20,8 @@ export function ScrollExperience() {
   const sceneState = useRef(createSceneState());
   const reducedMotion = useReducedMotion();
   const quality = useDeviceQuality(reducedMotion);
-  const snapshot = useScrollProgress(12, siteConfig.projects.length);
+  const { content, locale, setLocale } = useLocale();
+  const snapshot = useScrollProgress(12, content.projects.length);
 
   const projectTargets = useMemo(
     () => [
@@ -245,9 +246,15 @@ export function ScrollExperience() {
   return (
     <div ref={rootRef} className="experience">
       <Suspense fallback={<div className="canvasShell canvasPlaceholder" aria-hidden="true" />}>
-        <NeuralCanvas sceneState={sceneState} quality={quality} reducedMotion={reducedMotion} />
+        <NeuralCanvas
+          sceneState={sceneState}
+          quality={quality}
+          reducedMotion={reducedMotion}
+          loadingLabel={content.ui.loadingLabel}
+          projects={content.projects}
+        />
       </Suspense>
-      <PortfolioOverlay snapshot={snapshot} />
+      <PortfolioOverlay content={content} locale={locale} setLocale={setLocale} snapshot={snapshot} />
     </div>
   );
 }
