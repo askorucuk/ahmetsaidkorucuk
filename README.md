@@ -1,32 +1,83 @@
-# Ahmet Said Korucuk
+# Ahmet Said Korucuk Neural Portfolio
 
-## 🌟 Overview
+Sinematik scroll deneyimiyle ilerleyen, hücrelerden merkezi sinir ağına dönüşen deneysel kişisel portfolyo.
 
-The website serves as a landing page showcasing a dynamic 3D scene consisting of thousands of particles forming a galaxy structure. The scene includes animations such as:
-- Continuous rotation of the galaxy.
-- Periodic "explosion" effects where particles temporarily expand and change color.
-- Interactive camera controls allowing users to zoom and rotate around the scene.
+## Teknolojiler
 
-## 🛠️ Technologies Used
+- React, TypeScript, Vite
+- Three.js, React Three Fiber, @react-three/drei
+- GSAP ScrollTrigger
+- Lenis smooth scroll
+- Global CSS
 
-- **HTML5**: semantic structure for the layout (Header, Footer).
-- **CSS3**: Styling with a focus on full-screen layout, gradients, and backdrop filters for a modern aesthetic.
-- **JavaScript (ES6+)**: Core logic for the application.
-- **Three.js**: 3D library used for rendering the particle system, lighting, and camera controls.
+## Kurulum
 
-## ✨ Features
+```bash
+npm install
+npm run dev
+```
 
-- **3D Particle System**: A procedurally generated galaxy with custom colors and distribution parameters.
-- **Interactivity**: 
-  - `OrbitControls` allow users to rotate and zoom around the galaxy.
-  - Hover effects on social media icons in the footer.
-- **Responsive Design**: The canvas and UI elements resize dynamically to fit the window dimensions.
-- **Animations**:
-  - Smooth continuous rotation.
-  - Randomized explosion effects for visual interest.
+Production build:
 
-## 🔗 Socials
+```bash
+npm run build
+npm run preview
+```
 
-- [LinkedIn](https://www.linkedin.com/in/ahmetsaidkorucuk)
-- [GitHub](https://github.com/askorucuk)
-- [Instagram](https://www.instagram.com/ahmetsaidkorucuk/)
+## Deploy
+
+Bu proje GitHub Pages üzerinde `ahmetsaid.korucuk.com` custom domain'i ile kökten serve edilir. Bu yüzden Vite `base` ayarı varsayılan `/` olarak bırakılmıştır.
+
+Deploy akışı:
+
+1. GitHub repository settings içinde Pages source olarak `GitHub Actions` seçilir.
+2. `main` veya `master` branch'e push yapılır.
+3. `.github/workflows/deploy.yml` dependency audit, production build ve Pages deploy adımlarını çalıştırır.
+4. Root'taki `CNAME` dosyası build sonunda `dist/CNAME` içine kopyalanır.
+
+Manuel deploy tetiklemek için GitHub Actions ekranından `Deploy to GitHub Pages` workflow'u `Run workflow` ile çalıştırılabilir.
+
+## İçerik Değiştirme
+
+Kişisel bilgiler, yetenekler, projeler, sosyal bağlantılar ve renk değerleri tek dosyadan yönetilir:
+
+```text
+src/data/siteConfig.ts
+```
+
+Nöral ağın düğüm ve bağlantı üretimi:
+
+```text
+src/data/neuralField.ts
+```
+
+## Yapı
+
+```text
+src/
+  components/
+    NeuralCanvas/
+    NeuralSignalField/
+    NeuronSystem/
+    NeuralConnections/
+    SceneLighting/
+    ScrollExperience/
+    PortfolioOverlay/
+    ProjectSection/
+    ContactSection/
+    LoadingScreen/
+  hooks/
+  data/
+  styles/
+```
+
+## Performans ve Erişilebilirlik
+
+- 5000'e kadar GPU tabanlı sinyal tohumu ile yoğun ilk ekran
+- BufferGeometry ve shader uniform ile bağlantı animasyonları
+- Sınırlı devicePixelRatio
+- Mobilde daha düşük nöron, bağlantı ve partikül yoğunluğu
+- Düşük FPS algılanırsa otomatik kalite azaltma
+- WebGL fallback
+- `prefers-reduced-motion` desteği
+- Semantik HTML içerik katmanı ve klavye ile erişilebilir bağlantılar
