@@ -77,8 +77,10 @@ export function ScrollExperience() {
     if (reducedMotion) return;
 
     let interrupted = false;
+    let autoScrollFrame = 0;
     const interrupt = () => {
       interrupted = true;
+      cancelAnimationFrame(autoScrollFrame);
     };
     const interactionEvents: Array<keyof WindowEventMap> = ['wheel', 'touchstart', 'pointerdown', 'keydown'];
 
@@ -87,13 +89,29 @@ export function ScrollExperience() {
     const autoScrollTimer = window.setTimeout(() => {
       if (interrupted || window.scrollY > 4) return;
 
-      window.scrollTo({
-        top: Math.min(Math.round(window.innerHeight * 0.58), document.documentElement.scrollHeight - window.innerHeight),
-        behavior: 'smooth'
-      });
-    }, 4600);
+      const start = window.scrollY;
+      const target = Math.min(Math.round(window.innerHeight * 0.58), document.documentElement.scrollHeight - window.innerHeight);
+      const duration = 1600;
+      const startedAt = performance.now();
+      const easeInOut = (value: number) =>
+        value < 0.5 ? 4 * value * value * value : 1 - Math.pow(-2 * value + 2, 3) / 2;
+
+      const step = (now: number) => {
+        if (interrupted) return;
+
+        const progress = Math.min((now - startedAt) / duration, 1);
+        window.scrollTo(0, start + (target - start) * easeInOut(progress));
+
+        if (progress < 1) {
+          autoScrollFrame = requestAnimationFrame(step);
+        }
+      };
+
+      autoScrollFrame = requestAnimationFrame(step);
+    }, 5000);
 
     return () => {
+      cancelAnimationFrame(autoScrollFrame);
       window.clearTimeout(autoScrollTimer);
       interactionEvents.forEach((eventName) => window.removeEventListener(eventName, interrupt));
     };
